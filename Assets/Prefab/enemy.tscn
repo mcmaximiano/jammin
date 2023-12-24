@@ -18,3 +18,4 @@ texture = ExtResource("1_fjc0k")
 
 [node name="Damageable" type="Node" parent="."]
 script = ExtResource("2_jpsle")
+this_health = 5

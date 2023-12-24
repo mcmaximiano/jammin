@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://u8peit58stqc"]
+[gd_scene load_steps=8 format=3 uid="uid://u8peit58stqc"]
 
 [ext_resource type="Texture2D" uid="uid://boyc6qmtgajeg" path="res://Assets/Sprites/grey_square.png" id="1_8dofh"]
 [ext_resource type="Script" path="res://Assets/Scripts/player.gd" id="1_c14lh"]
 [ext_resource type="Script" path="res://Assets/Scripts/basic_attack_hitbox.gd" id="3_mvuek"]
 [ext_resource type="Texture2D" uid="uid://cko7tn754cow0" path="res://Assets/Sprites/red_square.png" id="4_rld8e"]
+[ext_resource type="Script" path="res://Assets/Scripts/damageable.gd" id="5_xhnk1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_832a2"]
 size = Vector2(16, 16)
@@ -32,5 +33,9 @@ shape = SubResource("RectangleShape2D_2c54u")
 [node name="Sprite2D" type="Sprite2D" parent="BasicAttackHitbox"]
 scale = Vector2(1.25, 1.25)
 texture = ExtResource("4_rld8e")
+
+[node name="Damageable" type="Node" parent="."]
+script = ExtResource("5_xhnk1")
+this_health = 10
 
 [connection signal="body_entered" from="BasicAttackHitbox" to="BasicAttackHitbox" method="_on_body_entered"]

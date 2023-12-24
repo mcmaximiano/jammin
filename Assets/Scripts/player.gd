@@ -13,6 +13,16 @@ var basic_attack_cooldown = 0;
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
+func _ready():
+	for child in get_children():
+		if child is Damageable:
+			current_level.update_ui_hp(child.this_health)
+	
+func hp_changed(value : int):
+	for child in get_children():
+		if child is Damageable:
+			child.hp_changed(value)
+			current_level.update_ui_hp(child.this_health)
 
 func _physics_process(delta):
 	# Add the gravity.
@@ -56,7 +66,7 @@ func _physics_process(delta):
 		basic_attack_cooldown = 5
 		
 	if Input.is_action_just_pressed("spell_down"):
-		current_level.update_ui_hp(-1)
+		hp_changed(-1)
 	
 
 	move_and_slide()
