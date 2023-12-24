@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://vbc2at3x14aq"]
+
+[ext_resource type="Script" path="res://Assets/Scripts/health_changed_label.gd" id="1_uiwlx"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_gx7w5"]
+font_size = 6
+
+[node name="HealthChangedLabel" type="Label"]
+offset_left = 1.0
+offset_top = -24.0
+offset_right = 2.0
+offset_bottom = -1.0
+label_settings = SubResource("LabelSettings_gx7w5")
+script = ExtResource("1_uiwlx")

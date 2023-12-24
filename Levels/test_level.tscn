@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://i85t5dyta2mi"]
+[gd_scene load_steps=9 format=3 uid="uid://i85t5dyta2mi"]
 
 [ext_resource type="Texture2D" uid="uid://dukdq7lkk5bcq" path="res://Assets/Sprites/black_square.png" id="1_ddu5j"]
 [ext_resource type="Script" path="res://Assets/Scripts/test_level.gd" id="1_qf4gr"]
 [ext_resource type="PackedScene" uid="uid://u8peit58stqc" path="res://Assets/Prefab/player.tscn" id="2_18lb0"]
 [ext_resource type="PackedScene" uid="uid://bbgp7ytt51hrn" path="res://Assets/Prefab/enemy.tscn" id="3_lmksm"]
 [ext_resource type="PackedScene" uid="uid://76aewi7stkhx" path="res://Assets/Prefab/canvas.tscn" id="4_fkh86"]
+[ext_resource type="PackedScene" uid="uid://c7k7ui1pedwoy" path="res://Assets/Prefab/health_changed_manager.tscn" id="6_ua4yt"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_qryuc"]
 texture = ExtResource("1_ddu5j")
@@ -17,11 +18,8 @@ texture = ExtResource("1_ddu5j")
 physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_qryuc")
 
-[node name="TestLevel" type="Node2D" node_paths=PackedStringArray("ui")]
+[node name="TestLevel" type="Node2D"]
 script = ExtResource("1_qf4gr")
-ui = NodePath("UI")
-
-[node name="UI" parent="." instance=ExtResource("4_fkh86")]
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_uohmd")
@@ -44,3 +42,8 @@ position = Vector2(271, 216)
 position = Vector2(67, 216)
 process_callback = 0
 position_smoothing_enabled = true
+
+[node name="UI" parent="." instance=ExtResource("4_fkh86")]
+unique_name_in_owner = true
+
+[node name="HealthChangedManager" parent="." instance=ExtResource("6_ua4yt")]

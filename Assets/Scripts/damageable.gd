@@ -6,7 +6,7 @@ class_name Damageable
 	get:
 		return this_health
 	set(value):
-		SignalBus.emit_signal("on_health_changed", value-this_health)
+		SignalBus.emit_signal("on_health_changed", get_parent(), value-this_health)
 		this_health = value
 
 func hp_changed(damage : int):

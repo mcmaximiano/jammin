@@ -13,10 +13,10 @@ var basic_attack_cooldown = 0;
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
-func _ready():
-	for child in get_children():
-		if child is Damageable:
-			current_level.update_ui_hp(child.this_health)
+#func _ready():
+#	for child in get_children():
+#		if child is Damageable:
+#			current_level.update_ui_hp(child.this_health)
 	
 func hp_changed(value : int):
 	for child in get_children():
