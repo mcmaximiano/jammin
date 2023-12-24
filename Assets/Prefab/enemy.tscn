@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://bbgp7ytt51hrn"]
+
+[ext_resource type="Texture2D" uid="uid://d3ygur750asa7" path="res://Assets/Sprites/light_grey_square.png" id="1_fjc0k"]
+[ext_resource type="Script" path="res://Assets/Scripts/damageable.gd" id="2_jpsle"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_a6ppt"]
+size = Vector2(16, 16)
+
+[node name="Enemy" type="CharacterBody2D"]
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_a6ppt")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_fjc0k")
+
+[node name="Damageable" type="Node" parent="."]
+script = ExtResource("2_jpsle")

@@ -1,0 +1,46 @@
+[gd_scene load_steps=8 format=3 uid="uid://i85t5dyta2mi"]
+
+[ext_resource type="Texture2D" uid="uid://dukdq7lkk5bcq" path="res://Assets/Sprites/black_square.png" id="1_ddu5j"]
+[ext_resource type="Script" path="res://Assets/Scripts/test_level.gd" id="1_qf4gr"]
+[ext_resource type="PackedScene" uid="uid://u8peit58stqc" path="res://Assets/Prefab/player.tscn" id="2_18lb0"]
+[ext_resource type="PackedScene" uid="uid://bbgp7ytt51hrn" path="res://Assets/Prefab/enemy.tscn" id="3_lmksm"]
+[ext_resource type="PackedScene" uid="uid://76aewi7stkhx" path="res://Levels/canvas.tscn" id="4_fkh86"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_qryuc"]
+texture = ExtResource("1_ddu5j")
+0:0/0 = 0
+0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_0/angular_velocity = 0.0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+
+[sub_resource type="TileSet" id="TileSet_uohmd"]
+physics_layer_0/collision_layer = 1
+sources/0 = SubResource("TileSetAtlasSource_qryuc")
+
+[node name="TestLevel" type="Node2D"]
+script = ExtResource("1_qf4gr")
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = SubResource("TileSet_uohmd")
+format = 2
+layer_0/name = "BlackTiles"
+layer_0/tile_data = PackedInt32Array(0, 0, 0, 1, 0, 0, 2, 0, 0, 3, 0, 0, 4, 0, 0, 5, 0, 0, 6, 0, 0, 7, 0, 0, 8, 0, 0, 9, 0, 0, 10, 0, 0, 11, 0, 0, 12, 0, 0, 13, 0, 0, 14, 0, 0, 15, 0, 0, 16, 0, 0, 17, 0, 0, 18, 0, 0, 19, 0, 0, 20, 0, 0, 21, 0, 0, 22, 0, 0, 23, 0, 0, 24, 0, 0, 25, 0, 0, 26, 0, 0, 27, 0, 0, 28, 0, 0, 65564, 0, 0, 131100, 0, 0, 196636, 0, 0, 262172, 0, 0, 327708, 0, 0, 393244, 0, 0, 458780, 0, 0, 524316, 0, 0, 589852, 0, 0, 655388, 0, 0, 720924, 0, 0, 786460, 0, 0, 851996, 0, 0, 917532, 0, 0, 917504, 0, 0, 917505, 0, 0, 917506, 0, 0, 917507, 0, 0, 917508, 0, 0, 917509, 0, 0, 917510, 0, 0, 917511, 0, 0, 917512, 0, 0, 917513, 0, 0, 917514, 0, 0, 917515, 0, 0, 917516, 0, 0, 917517, 0, 0, 917518, 0, 0, 917519, 0, 0, 917520, 0, 0, 917521, 0, 0, 917522, 0, 0, 917523, 0, 0, 917524, 0, 0, 917525, 0, 0, 917526, 0, 0, 917527, 0, 0, 917528, 0, 0, 917529, 0, 0, 917530, 0, 0, 917531, 0, 0, 65536, 0, 0, 131072, 0, 0, 196608, 0, 0, 262144, 0, 0, 327680, 0, 0, 393216, 0, 0, 458752, 0, 0, 524288, 0, 0, 589824, 0, 0, 655360, 0, 0, 720896, 0, 0, 786432, 0, 0, 851968, 0, 0)
+
+[node name="Player" parent="." node_paths=PackedStringArray("current_level") instance=ExtResource("2_18lb0")]
+position = Vector2(67, 216)
+speed = 200.0
+current_level = NodePath("..")
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Player"]
+remote_path = NodePath("../../Camera2D")
+
+[node name="Enemy" parent="." instance=ExtResource("3_lmksm")]
+position = Vector2(271, 216)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(67, 216)
+process_callback = 0
+position_smoothing_enabled = true
+
+[node name="UI" parent="." instance=ExtResource("4_fkh86")]
+unique_name_in_owner = true
