@@ -1,11 +1,14 @@
 extends CharacterBody2D
 
+@onready var fire_ball_timer = $FireBallTimer
 
 @export var speed : float = 300.0
 @export var jump_velocity : float = -400.0
 @export var double_jump_velocity : float = -300.0
 
 @export var current_level:Node2D
+@export var fire_ball : PackedScene
+@export var fire_ball_cooldown : float = 0.5
 
 var double_jump_cooldown = true
 var basic_attack_cooldown = 0;
@@ -67,6 +70,16 @@ func _physics_process(delta):
 		
 	if Input.is_action_just_pressed("spell_down"):
 		hp_changed(-1)
-	
+		
+	if Input.is_action_just_pressed("spell_right") and fire_ball_timer.is_stopped():
+		fire_ball_timer.start(fire_ball_cooldown)
+		_shoot_fire_ball()
+		hp_changed(-1)	
 
 	move_and_slide()
+
+func _shoot_fire_ball():
+	var bullet = fire_ball.instantiate()
+	bullet.position = position
+	bullet.direction = Vector2.RIGHT
+	get_tree().current_scene.add_child(bullet)

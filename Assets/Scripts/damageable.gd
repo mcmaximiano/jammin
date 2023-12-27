@@ -14,3 +14,8 @@ func hp_changed(damage : int):
 	
 	if (this_health <= 0):
 		get_parent().queue_free()
+
+
+func _on_hitbox_area_entered(area):
+	if area.has_method('fire_ball_hit'):
+		hp_changed(-1)

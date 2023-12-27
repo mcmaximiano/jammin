@@ -1,10 +1,12 @@
-[gd_scene load_steps=4 format=3 uid="uid://bbgp7ytt51hrn"]
+[gd_scene load_steps=5 format=3 uid="uid://bbgp7ytt51hrn"]
 
 [ext_resource type="Texture2D" uid="uid://d3ygur750asa7" path="res://Assets/Sprites/light_grey_square.png" id="1_fjc0k"]
 [ext_resource type="Script" path="res://Assets/Scripts/damageable.gd" id="2_jpsle"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_a6ppt"]
 size = Vector2(16, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ght6m"]
 
 [node name="Enemy" type="CharacterBody2D"]
 collision_layer = 3
@@ -19,3 +21,10 @@ texture = ExtResource("1_fjc0k")
 [node name="Damageable" type="Node" parent="."]
 script = ExtResource("2_jpsle")
 this_health = 5
+
+[node name="Hitbox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+shape = SubResource("RectangleShape2D_ght6m")
+
+[connection signal="area_entered" from="Hitbox" to="Damageable" method="_on_hitbox_area_entered"]

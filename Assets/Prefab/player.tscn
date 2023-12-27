@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://u8peit58stqc"]
+[gd_scene load_steps=9 format=3 uid="uid://u8peit58stqc"]
 
 [ext_resource type="Texture2D" uid="uid://boyc6qmtgajeg" path="res://Assets/Sprites/grey_square.png" id="1_8dofh"]
 [ext_resource type="Script" path="res://Assets/Scripts/player.gd" id="1_c14lh"]
+[ext_resource type="PackedScene" uid="uid://f7486wc7yox6" path="res://Assets/Prefab/fire_ball.tscn" id="2_qdti5"]
 [ext_resource type="Script" path="res://Assets/Scripts/basic_attack_hitbox.gd" id="3_mvuek"]
 [ext_resource type="Texture2D" uid="uid://cko7tn754cow0" path="res://Assets/Sprites/red_square.png" id="4_rld8e"]
 [ext_resource type="Script" path="res://Assets/Scripts/damageable.gd" id="5_xhnk1"]
@@ -13,6 +14,7 @@ size = Vector2(16, 16)
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_c14lh")
+fire_ball = ExtResource("2_qdti5")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_832a2")
@@ -37,5 +39,8 @@ texture = ExtResource("4_rld8e")
 [node name="Damageable" type="Node" parent="."]
 script = ExtResource("5_xhnk1")
 this_health = 10
+
+[node name="FireBallTimer" type="Timer" parent="."]
+one_shot = true
 
 [connection signal="body_entered" from="BasicAttackHitbox" to="BasicAttackHitbox" method="_on_body_entered"]
